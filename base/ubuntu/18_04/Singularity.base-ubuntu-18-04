@@ -1,3 +1,4 @@
+# build base container required for all other container builds. Installs Ubuntu 18.04 as well as packages required for FW builds.
 BootStrap: docker
 From: ubuntu:18.04
 
@@ -29,4 +30,3 @@ From: ubuntu:18.04
     update-alternatives --config c++
 
 %labels
-# build base container required for all other container builds. Installs Ubuntu 18.04 as well as packages required for FW builds.
