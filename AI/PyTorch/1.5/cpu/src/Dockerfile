@@ -1,4 +1,4 @@
-FROM modakopt/containers:base-ubuntu-18-04 
+FROM modakopt/modak:ubuntu-18-04
 LABEL Author nina, karthee
 ENV PATH=$PATH:/opt/anaconda3/bin
 WORKDIR /home

@@ -1,4 +1,4 @@
-FROM modakopt/containers:base-ubuntu-18-04 
+FROM modakopt/modak:ubuntu-18-04 
 # Copy all the files 
 RUN apt-get install -y gcc-8 g++-8
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 80 --slave /usr/bin/g++ g++ /usr/bin/g++-8

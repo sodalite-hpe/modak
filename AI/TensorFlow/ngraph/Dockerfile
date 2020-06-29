@@ -1,4 +1,4 @@
-FROM modakopt/containers:base-ubuntu-18-04 
+FROM modakopt/modak:ubuntu-18-04
 RUN pip3 install -UI tensorflow==1.14
 RUN pip3 install -U keras==2.3.0
 RUN pip3 install -U ngraph-tensorflow-bridge
