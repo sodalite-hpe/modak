@@ -1,5 +1,5 @@
 BootStrap: docker
-From: modakopt/containers:base-ubuntu-18-04
+From: modakopt/modak:ubuntu-18-04
 
 %environment
 PATH=$PATH:/opt/anaconda3/bin
