@@ -1,4 +1,4 @@
-FROM modakopt/containers:base-ubuntu-18-04 
+FROM modakopt/modak:ubuntu-18-04
 LABEL Author nina, karthee
 ENV PATH=$PATH:/opt/anaconda3/bin
 WORKDIR /home
@@ -15,11 +15,15 @@ RUN export USE_CUDA=0
 RUN git clone --recursive https://github.com/pytorch/pytorch
 WORKDIR /home/pytorch
 RUN git checkout tags/v1.5.1
+RUN git submodule sync
+RUN git submodule update --init --recursive
 RUN export CMAKE_PREFIX_PATH=${CONDA_PREFIX:-"$(dirname $(which conda))/../"}
+RUN pip3 install numpy ninja pyyaml mkl mkl-include setuptools cmake cffi typing
 RUN python3 setup.py install
 WORKDIR /home
 RUN git clone --recursive https://github.com/pytorch/vision
 WORKDIR /home/vision
+RUN git checkout tags/v0.6.0
 RUN python3 setup.py install
 WORKDIR /home
 RUN git clone --recursive https://github.com/pytorch/examples
