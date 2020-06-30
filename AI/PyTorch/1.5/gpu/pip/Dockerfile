@@ -19,4 +19,4 @@ RUN echo "export PATH" >> /home/.bashrc
 RUN rm Anaconda3-2019.10-Linux-x86_64.sh
 RUN . /home/.bashrc
 RUN conda install numpy ninja pyyaml mkl mkl-include setuptools cmake cffi typing
-RUN conda install pytorch==1.5.1 torchvision==0.6.0 cudatoolkit=10.1 -c pytorch
+RUN conda install pytorch==1.5.1 torchvision cudatoolkit=10.1 -c pytorch
