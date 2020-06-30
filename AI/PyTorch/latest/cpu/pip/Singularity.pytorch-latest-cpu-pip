@@ -1,0 +1,9 @@
+BootStrap: docker
+From: modakopt/containers:base-ubuntu-18-04
+
+%post
+    pip3 install --upgrade pip
+    pip3 install torch, torchvision
+
+%labels
+    Author nina, karthee

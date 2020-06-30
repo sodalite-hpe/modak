@@ -1,11 +1,9 @@
 FROM modakopt/modak:ubuntu-18-04
 # Copy all the files 
-RUN apt-get install -y gcc-8 g++-8
-RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 80 --slave /usr/bin/g++ g++ /usr/bin/g++-8
-RUN update-alternatives --config gcc
 RUN apt-get -y install pkg-config zip unzip
 RUN pip3 install --upgrade pip
-RUN pip3 install -U pip six numpy wheel setuptools mock 'future>=0.17.1'
+RUN pip3 install -U pip six wheel setuptools mock 'future>=0.17.1'
+RUN pip3 install numpy==1.18.0
 RUN pip3 install -U keras_applications --no-deps
 RUN pip3 install -U keras_preprocessing --no-deps
 WORKDIR /home

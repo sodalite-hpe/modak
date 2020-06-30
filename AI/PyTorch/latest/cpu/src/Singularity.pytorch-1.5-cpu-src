@@ -1,7 +1,5 @@
-# build torch from source. 
-
-BootStrap: localimage
-From: ./ubuntu_base/
+BootStrap: docker
+From: modakopt/containers:base-ubuntu-18-04
 
 %environment
 PATH=$PATH:/opt/anaconda3/bin
@@ -25,24 +23,25 @@ export PATH
 	cd /home
 	conda install numpy ninja pyyaml mkl mkl-include setuptools cmake cffi typing
 
-    #set to no cuda installation
-    export USE_CUDA=0
+	#set to no cuda installation
+	export USE_CUDA=0
 
-    # Get pytorch source
-    git clone --recursive https://github.com/pytorch/pytorch
-    cd pytorch
-    export CMAKE_PREFIX_PATH=${CONDA_PREFIX:-"$(dirname $(which conda))/../"}
-    python setup.py install
+	# Get pytorch source
+	git clone --recursive https://github.com/pytorch/pytorch
+	cd pytorch
+    	git checkout tags/v1.5.0
+	export CMAKE_PREFIX_PATH=${CONDA_PREFIX:-"$(dirname $(which conda))/../"}
+	python3 setup.py install
 
-    # Get torchvision source
-    cd ../
-    git clone --recursive https://github.com/pytorch/vision
-    cd vision
-    python setup.py install
+	# Get torchvision source
+	cd ../
+	git clone --recursive https://github.com/pytorch/vision
+	cd vision
+	python3 setup.py install
 
-    # Get pytorch examples
-    cd ../
-    git clone --recursive https://github.com/pytorch/examples
+	# Get pytorch examples
+	cd ../
+	git clone --recursive https://github.com/pytorch/examples
 
 %labels
-    Author nina
+    Author nina, karthee
