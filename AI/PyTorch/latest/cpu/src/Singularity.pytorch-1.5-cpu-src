@@ -1,5 +1,5 @@
 BootStrap: docker
-From: modakopt/containers:base-ubuntu-18-04
+From: modakopt/modak:ubuntu-18-04
 
 %environment
 PATH=$PATH:/opt/anaconda3/bin
@@ -29,8 +29,8 @@ export PATH
 	# Get pytorch source
 	git clone --recursive https://github.com/pytorch/pytorch
 	cd pytorch
-    	git checkout tags/v1.5.0
 	export CMAKE_PREFIX_PATH=${CONDA_PREFIX:-"$(dirname $(which conda))/../"}
+	pip3 install numpy ninja pyyaml mkl mkl-include setuptools cmake cffi typing
 	python3 setup.py install
 
 	# Get torchvision source

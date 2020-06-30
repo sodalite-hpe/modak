@@ -29,14 +29,19 @@ export PATH
 	# Get pytorch source
 	git clone --recursive https://github.com/pytorch/pytorch
 	cd pytorch
-    	git checkout tags/v1.5.0
+    	git checkout tags/v1.5.1
+ 	git submodule sync
+	git submodule update --init --recursive
+
 	export CMAKE_PREFIX_PATH=${CONDA_PREFIX:-"$(dirname $(which conda))/../"}
+	pip3 install numpy ninja pyyaml mkl mkl-include setuptools cmake cffi typing
 	python3 setup.py install
 
 	# Get torchvision source
 	cd ../
 	git clone --recursive https://github.com/pytorch/vision
 	cd vision
+	git checkout tags/v0.6.0
 	python3 setup.py install
 
 	# Get pytorch examples
