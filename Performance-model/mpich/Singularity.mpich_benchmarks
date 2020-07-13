@@ -104,10 +104,10 @@ From: debian:buster
     # Copy ARCH file to compile HPCC
     # Based on https://github.com/hpc-uk/archer-benchmarks/blob/master/synth/HPCC/Make_arch/Athena/Make.athena_gcc
     # Create workdir
-    build/Make.Linux /workdir/
+    Make.Linux /workdir/
 
     # Copy C program to check MPI rank
-    build/mpirank.c /workdir
+    mpirank.c /workdir
 
 %post
     #
