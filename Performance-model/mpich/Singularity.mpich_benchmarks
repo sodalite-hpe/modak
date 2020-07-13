@@ -1,4 +1,4 @@
-Bootstrap: docker 
+Bootstrap: docker     
 From: debian:buster
 
 %help
@@ -169,6 +169,6 @@ From: debian:buster
     cd .. && rm -rf b_eff_io
 
     #
-    # Compile program to get MPI rank
+    # Compile program to get MPI ranks
     #
     mpicc /workdir/mpirank.c -o ${BINDIR}/mpirank
