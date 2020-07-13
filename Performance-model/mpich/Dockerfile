@@ -4,10 +4,6 @@ ADD # Copy C program to check MPI rank
 ADD mpirank.c /workdir
 LABEL Author cerl@cray.com --  Cray EMEA Research Lab
 LABEL Version v0.1.0
-ENV BINDIR=/workdir/bin
-ENV MYRANK=$(${BINDIR}/mpirank | cut -d':' -f 1)
-ENV NPROCS=$(${BINDIR}/mpirank | cut -d':' -f 2)
-ENV NPROCS=${NP}
 RUN export BINDIR=/workdir/bin
 RUN mkdir -p ${BINDIR}
 RUN apt-get update && apt-get -y upgrade --no-install-recommends
