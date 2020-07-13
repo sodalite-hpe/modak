@@ -152,7 +152,7 @@ From: debian:buster
     tar xf hpcc-${HPCC_VERSION}.tar.gz && rm hpcc-${HPCC_VERSION}.tar.gz
     cd hpcc-${HPCC_VERSION}
     # Move Arch file
-    mv ../Make.Linux hpl/
+    mv /workdir/Make.Linux hpl/.
     make arch=Linux
     cp /workdir/hpcc-${HPCC_VERSION}/hpcc ${BINDIR}
     cd .. && rm -rf hpcc-${HPCC_VERSION}
