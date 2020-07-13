@@ -1,7 +1,4 @@
 FROM debian:buster
-ADD Make.Linux /workdir/
-ADD # Copy C program to check MPI rank
-ADD mpirank.c /workdir
 LABEL Author cerl@cray.com --  Cray EMEA Research Lab
 LABEL Version v0.1.0
 RUN export BINDIR=/workdir/bin
@@ -26,7 +23,7 @@ RUN export HPCC_VERSION=1.5.0
 RUN wget http://icl.cs.utk.edu/projectsfiles/hpcc/download/hpcc-${HPCC_VERSION}.tar.gz
 RUN tar xf hpcc-${HPCC_VERSION}.tar.gz && rm hpcc-${HPCC_VERSION}.tar.gz
 WORKDIR /workdir/hpcc-${HPCC_VERSION}
-RUN mv ../Make.Linux hpl/
+RUN wget https://raw.githubusercontent.com/sodalite-hpe/modak/master/Performance-model/mpich/Make.Linux
 RUN make arch=Linux
 RUN cp /workdir/hpcc-${HPCC_VERSION}/hpcc ${BINDIR}
 WORKDIR /workdir
@@ -38,5 +35,6 @@ WORKDIR /workdir/b_eff_io
 RUN mpicc -o ${BINDIR}/b_eff_io b_eff_io.c -lm
 RUN cp -r eps ${BINDIR}/b_eff_io_eps
 WORKDIR /workdir
+wget https://raw.githubusercontent.com/sodalite-hpe/modak/master/Performance-model/mpich/mpirank.c
 RUN rm -rf b_eff_io
 RUN mpicc /workdir/mpirank.c -o ${BINDIR}/mpirank
