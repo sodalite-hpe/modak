@@ -4,17 +4,14 @@ LABEL Version v0.1.0
 RUN export BINDIR=/workdir/bin
 RUN mkdir -p ${BINDIR}
 RUN apt-get update && apt-get -y upgrade --no-install-recommends
-RUN apt-get -y install --no-install-recommends \
-build-essential wget less gfortran procps \
-libopenblas-dev
+RUN apt-get -y install --no-install-recommends build-essential wget less gfortran procps libopenblas-dev
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* # do not forget to clean!
 WORKDIR /workdir
 RUN export MPICH_VERSION=3.3.1
 RUN wget -q http://www.mpich.org/static/downloads/${MPICH_VERSION}/mpich-${MPICH_VERSION}.tar.gz
 RUN tar xf mpich-${MPICH_VERSION}.tar.gz && rm mpich-${MPICH_VERSION}.tar.gz
 WORKDIR /workdir/mpich-${MPICH_VERSION}
-RUN ./configure --prefix=/usr/local --disable-static --disable-rpath --disable-wrapper-rpath \
---mandir=/usr/share/man --enable-fast=all,O3
+RUN ./configure --prefix=/usr/local --disable-static --disable-rpath --disable-wrapper-rpath --mandir=/usr/share/man --enable-fast=all,O3
 RUN make -j$(getconf _NPROCESSORS_ONLN) install
 RUN ldconfig
 WORKDIR /workdir
@@ -35,6 +32,6 @@ WORKDIR /workdir/b_eff_io
 RUN mpicc -o ${BINDIR}/b_eff_io b_eff_io.c -lm
 RUN cp -r eps ${BINDIR}/b_eff_io_eps
 WORKDIR /workdir
-wget https://raw.githubusercontent.com/sodalite-hpe/modak/master/Performance-model/mpich/mpirank.c
+RUN wget https://raw.githubusercontent.com/sodalite-hpe/modak/master/Performance-model/mpich/mpirank.c
 RUN rm -rf b_eff_io
 RUN mpicc /workdir/mpirank.c -o ${BINDIR}/mpirank
