@@ -14,9 +14,9 @@ From: ubuntu:16.04
     #
 #    . /usr/local/workdir/config/cp2k_conf.def
 
-#    if test ! -z ${NP+x}; then
-#	export RUNCMD="mpiexec -np ${NP}"
-#    fi
+    if test ! -z ${NP+x}; then
+	export RUNCMD="mpiexec -np ${NP}"
+    fi
 
     export OPENBLAS_NUM_THREADS=${OPENBLAS_NUM_THREADS:-1}
     export OPENBLAS_MAIN_FREE=1 # Used to avoid Python crash
@@ -48,7 +48,7 @@ From: ubuntu:16.04
     mpirank.c /usr/local/workdir
 
     # Building configuration
-    cp2k_conf.def /usr/local/workdir/config
+    #cp2k_conf.def /usr/local/workdir/config
 
 %post
     #
@@ -81,7 +81,7 @@ From: ubuntu:16.04
     #
     # Read configuration
     #
-    . config/cp2k_conf.def
+    # . config/cp2k_conf.def
 
     #
     # Install MPICH
